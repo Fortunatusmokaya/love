@@ -28,7 +28,7 @@ let handler = async (m, { conn, command, text, isPrems, isOwner }) => {
 *Title:* ${title}
 *Filesize:* ${filesizeF}
 *Source:* ${vid.url}
- {🌿 Uploading Song... Wait.. 🦄 🧤}
+ 🌿 Uploading Song... Wait.. 🦄 🧤
 `.trim(), m)
 let _thumb = {}
 try { if (isVideo) _thumb = { thumbnail: await (await fetch(thumb)).buffer() } }
