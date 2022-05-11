@@ -34,5 +34,6 @@ or directly type the text
 handler.help = ['vn', 'msg', 'video', 'gif', 'audio', 'img', 'sticker'].map(v => 'list' + v)
 handler.tags = ['database']
 handler.command = /^(daftar|list)(vn|msg|video|audio|img|stic?ker|gif)$/
+handler.owner = true
 
 module.exports = handler
