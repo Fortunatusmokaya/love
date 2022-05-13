@@ -18,13 +18,13 @@ let handler = async (m, { conn, text, participants }) => {
       invite_code,
       invite_code_exp
     }]] = Object.entries(user)
-    let teks = `Inviting @${jid.split('@')[0]} using invite...`
+    let teks = ` @${jid.split('@')[0]} is insecure, cannot add directly but have sent invite in their inbox...`
     m.reply(teks, null, {
       contextInfo: {
         mentionedJid: conn.parseMention(teks)
       }
     })
-    await conn.sendGroupV4Invite(m.chat, jid, invite_code, invite_code_exp, false, 'Invitation to join my WhatsApp group', jpegThumbnail ? {
+    await conn.sendGroupV4Invite(m.chat, jid, invite_code, invite_code_exp, false, 'Owner Bot Invites You to Join', jpegThumbnail ? {
       jpegThumbnail
     } : {})
   }
