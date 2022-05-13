@@ -1,6 +1,5 @@
 let fetch = require('node-fetch')
-let handler = async (m, { conn, text, participants, usedPrefix, command }) => {
-  if (!text) throw `_Enter number!_ \nExample:\n\n${usedPrefix + command + ' ' + global.owner[0]}`
+let handler = async (m, { conn, text, participants }) => {
   let _participants = participants.map(user => user.jid)
   let users = (await Promise.all(
     text.split(',')
@@ -12,7 +11,6 @@ let handler = async (m, { conn, text, participants, usedPrefix, command }) => {
       ])
   )).filter(v => v[1]).map(v => v[0] + '@c.us')
   let response = await conn.groupAdd(m.chat, users)
-  if (response[users] == 408) throw `The number has been out recently\nCan only enter via ${usedPrefix}link`
   let pp = await conn.getProfilePicture(m.chat).catch(_ => false)
   let jpegThumbnail = pp ? await (await fetch(pp)).buffer() : false
   for (let user of response.participants.filter(user => Object.values(user)[0].code == 403)) {
@@ -20,31 +18,29 @@ let handler = async (m, { conn, text, participants, usedPrefix, command }) => {
       invite_code,
       invite_code_exp
     }]] = Object.entries(user)
-    let teks = `Cannot add @${jid.split('@')[0]} directly. Sending invite to his inbox...`
+    let teks = `Could not add @${jid.split('@')[0]} directly due to WhatsApp privacy.. Sent an invite to their inbox...`
     m.reply(teks, null, {
       contextInfo: {
         mentionedJid: conn.parseMention(teks)
       }
     })
-    await conn.sendGroupV4Invite(m.chat, jid, invite_code, invite_code_exp, false, '🦄 Dreaded bot Invites you Here 🦄', jpegThumbnail ? {
+    await conn.sendGroupV4Invite(m.chat, jid, invite_code, invite_code_exp, false, 'Dreaded Bot Invites You to Join', jpegThumbnail ? {
       jpegThumbnail
     } : {})
   }
 }
-handler.help = ['add/+'].map(v => v + ' number,number')
+handler.help = ['add/o+'].map(v => 'o' + v + ' @user')
 handler.tags = ['admin']
 handler.command = /^(add|\+)$/i
-handler.owner = true
+handler.owner = false
 handler.mods = false
 handler.premium = false
 handler.group = true
 handler.private = false
 
-handler.admin = false
+handler.admin = true
 handler.botAdmin = true
 
 handler.fail = null
-handler.limit = true
 
 module.exports = handler
-
