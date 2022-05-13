@@ -81,6 +81,7 @@ module.exports = {
           delete: true,
           antiLink: false,
           viewonce: false,
+          restrict: true
         }
       } catch (e) {
         console.error(e)
