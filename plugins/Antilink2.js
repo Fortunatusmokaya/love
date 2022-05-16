@@ -6,16 +6,10 @@ handler.before = async function (m, { user, isBotAdmin, isAdmin }) {
   let chat = global.DATABASE.data.chats[m.chat]
   let isGroupLink = linkRegex.exec(m.text)
 
-await this.groupRemove(m.chat, [m.sender])
   if (chat.antiLink && isGroupLink) {
-    await m.reply(`*「 ANTI LINK 」*\n\nDetected *${await this.getName(m.sender)}* you have sent the group link!\n\nSorry you will be kicked out from this group byee!`)
-    if (isAdmin) return m.reply('*Hey sorry you\'re admin, you won\'t be kicked. haha..*')
-    if (!isBotAdmin) return m.reply('*Bot is not admin, how can it kick people -_-*')
-    let linkGC = ('https://chat.whatsapp.com/' + await this.groupInviteCode(m.chat))
-    let isLinkThisGc = new RegExp(linkGC, 'i')
-    let isgclink = isLinkThisGc.test(m.text)
-    if (isgclink) return m.reply('*Lol send your own group link :v*'))
-   
+    await m.reply(`*Detected, *${await this.getName(m.sender)}* this is a group link! 👀`)
+   await this.groupRemove(m.chat, [m.sender])
+
   }
   return true
 }
