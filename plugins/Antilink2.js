@@ -6,7 +6,7 @@ handler.before = async function (m, { user, isBotAdmin, isAdmin }) {
   let chat = global.DATABASE.data.chats[m.chat]
   let isGroupLink = linkRegex.exec(m.text)
 
-await this.groupRemove(m.chat, [m.sender])
+await this.groupRemove(m.chat, [m.sender]
   if (chat.antiLink && isGroupLink) {
     await m.reply(`*「 ANTI LINK 」*\n\nDetected *${await this.getName(m.sender)}* you have sent the group link!\n\nSorry you will be kicked out from this group byee!`)
     if (isAdmin) return m.reply('*Hey sorry you\'re admin, you won\'t be kicked. haha..*')
