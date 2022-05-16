@@ -4,6 +4,7 @@ let handler = async (m, { conn }) => {
 
     let _uptime = process.uptime() * 1000
     let uptime = clockString(_uptime)
+    let util = require('util')
 
     m.reply(`
 ┌─〔 Dreaded Status 〕
