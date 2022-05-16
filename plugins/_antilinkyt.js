@@ -10,7 +10,7 @@ handler.before = function (m, { isAdmin, isBotAdmin }) {
     m.reply('Uuuuuh!!\n\nYoutube Link Detected Bye')
     if (global.opts['restrict']) {
       if (isAdmin || !isBotAdmin) return true
-      // this.groupRemove(m.chat, [m.sender])
+       this.groupRemove(m.chat, [m.sender])
     }
   }
   return true
