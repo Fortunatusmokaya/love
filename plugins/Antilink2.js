@@ -10,7 +10,7 @@ handler.before = async function (m, { user, isBotAdmin, isAdmin }) {
     await m.reply(`*「 ANTI LINK 」*\n\nDetected *${await this.getName(m.sender)}* you have sent the YouTube  link!\n\nByee Look for subscribers elsewhere!`)
     if (isrowner) return m.reply('*Hey sorry, I  won't kick my owner,*Mokaya* you won\'t be kicked. hehe..*')
     if (!isBotAdmin) return m.reply('*Bot is not admin, Otherwise am leaving too -*')
-    let linkyt = ('https://youtu.be/' + await this.youtubeInviteCode(m.chat))
+    let linkyt = ('https://youtu.be/' + await this.youtubeInviteCode(m.chat)))
     let isLinkThisyt = new RegExp(linkyt, 'i')
     let isytlink = isLinkThisyt.test(m.text)
     if (isytlink) return m.reply('*Lol send your own Youtube link :v*')
