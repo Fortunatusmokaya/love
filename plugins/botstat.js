@@ -14,7 +14,7 @@ let handler = async (m, { conn }) => {
 ├ *${conn.blocklist.length}* Blocked
 ├ *${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}* Banned Chat
 ├ *${Object.entries(global.db.data.users).filter(user => user[1].banned).length}* Banned User
-${conn.battery ? `${conn.battery.value}% Battery 🔋
+${conn.battery ? ${conn.battery.value}% Battery 🔋
 └────
     `.trim())
 }
