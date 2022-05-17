@@ -8,6 +8,7 @@ handler.before = async function (m, { user, isBotAdmin, isAdmin }) {
 
   if (chat.antiLink && isGroupLink) {
     await m.reply(`*Detected, *${await this.getName(m.sender)}*, this is a group link! 👀`)
+   if (isowner) return m.reply('Well, Sender of link is owner. I cannot remove him 🤝')
    await this.groupRemove(m.chat, [m.sender])
 
   }
