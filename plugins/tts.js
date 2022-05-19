@@ -1,10 +1,9 @@
-let gtts = require('node-gtts')
-let fs = require('fs')
-let path = require('path')
-let { spawn } = require('child_process')
+import gtts from 'node-gtts'
+import { readFileSync, unlinkSync } from 'fs'
+import { join } from 'path'
 
 const defaultLang = 'en'
-let handler = async (m, { conn, args }) => {
+let handler = async (m, { conn, args, usedPrefix, command }) => {
 
   let lang = args[0]
   let text = args.slice(1).join(' ')
@@ -12,31 +11,34 @@ let handler = async (m, { conn, args }) => {
     lang = defaultLang
     text = args.join(' ')
   }
-  if (!text && m.quoted && m.quoted.text) text = m.quoted.text
+  if (!text && m.quoted?.text) text = m.quoted.text
 
   let res
   try { res = await tts(text, lang) }
   catch (e) {
     m.reply(e + '')
-    res = await tts(text)
+    text = args.join(' ')
+    if (!text) throw `Use example ${usedPrefix}${command} en Dreaded bot`
+    res = await tts(text, defaultLang)
   } finally {
-    conn.sendFile(m.chat, res, 'tts.opus', null, m, true)
+    if (res) conn.sendFile(m.chat, res, 'tts.opus', null, m, true)
   }
 }
-handler.help = ['tts <lang> <txt>']
+handler.help = ['tts']
 handler.tags = ['tools']
 handler.command = /^g?tts$/i
-module.exports = handler
+
+export default handler
 
 function tts(text, lang = 'en') {
   console.log(lang, text)
   return new Promise((resolve, reject) => {
     try {
       let tts = gtts(lang)
-      let filePath = path.join(__dirname, '../tmp', (1 * new Date) + '.wav')
+      let filePath = join(global.__dirname(import.meta.url), '../tmp', (1 * new Date) + '.wav')
       tts.save(filePath, text, () => {
-        resolve(fs.readFileSync(filePath))
-        fs.unlinkSync(filePath)
+        resolve(readFileSync(filePath))
+        unlinkSync(filePath)
       })
     } catch (e) { reject(e) }
   })
