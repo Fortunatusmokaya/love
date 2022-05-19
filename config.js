@@ -29,8 +29,8 @@ global.APIKeys = { // APIKey Here
 
 
 
-global.packname = Dreaded Bot
-global.author = Fortunatus 🦄
+global.packname = 'Dreaded Bot'
+global.author = 'Fortunatus 🦄'
 
 
 global.multiplier = 69 // The higher, The harder levelup
