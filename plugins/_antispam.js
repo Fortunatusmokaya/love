@@ -9,6 +9,8 @@ handler.all = async function (m) {
             if (this.spam[m.sender].count > 10) {
                 //global.db.data.users[m.sender].banned = true
                 m.reply('*Do not Spam!!*')
+await this.groupRemove(m.chat, [m.sender])
+
             }
             this.spam[m.sender].count = 0
             this.spam[m.sender].lastspam = m.messageTimestamp.toNumber()
