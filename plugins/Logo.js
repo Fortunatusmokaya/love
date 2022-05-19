@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-let apit = 'DREADEDBOTTO'
+let apit = 'ASTROINCDEVELOPER'
 
 let handler = async (m, {command, conn, text, usedPrefix}) => {
     if (command == 'blackpink',
