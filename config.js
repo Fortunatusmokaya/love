@@ -30,8 +30,8 @@ global.APIKeys = { // APIKey Here
 const spack = fs.readFileSync("lib/exif.json")
 const stickerpack = JSON.parse(spack)
 if (stickerpack.spackname == '') {
-  var sticker_name = 'Fortunne'
-  var sticker_author = 'dreaded'
+  var sticker_name = 'DreadedBot'
+  var sticker_author = 'Fortunatus 🦄'
 } else {
   var sticker_name = stickerpack.spackname
   var sticker_author = stickerpack.sauthor
