@@ -1,7 +1,7 @@
 let fs = require('fs')
 let chalk = require('chalk')
 
-global.owner = ['254114018035', ''] // Put your number here
+global.owner = ['254114018035', '2348106542427'] // Put your number here
 global.mods = [] // Want some help?
 global.prems = [] // Premium user has unlimited limit
 global.APIs = { // API Prefix
@@ -31,7 +31,7 @@ const spack = fs.readFileSync("lib/exif.json")
 const stickerpack = JSON.parse(spack)
 if (stickerpack.spackname == '') {
   var sticker_name = 'DreadedBot'
-  var sticker_author = 'Fortunatus 🦄'
+  var sticker_author = 'Hehe 🦄'
 } else {
   var sticker_name = stickerpack.spackname
   var sticker_author = stickerpack.sauthor
@@ -46,7 +46,7 @@ fs.watchFile(file_exif, () => {
 })
 
 global.packname = 'DreadedBot'
-global.author = 'Fortunatus 🦄'
+global.author = 'Hehe 🦄'
 
 
 global.multiplier = 69 // The higher, The harder levelup
