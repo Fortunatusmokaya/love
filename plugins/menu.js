@@ -38,7 +38,8 @@ const defaultMenu = {
 
 〽️ Prefix: *%p*
 📅 Date: *%week, %date*
-💠 Owner: Love 🦄
+💠 Repo: GitHub.com/Fortunatusmokaya
+🦄 Owner: Doesn't Matter! Type .owner
 
 👇🏻 For all commands tap Read more. Do not spam!
 
@@ -46,7 +47,7 @@ const defaultMenu = {
   header: '        *━━❰･%category･❱━━*',
   body: ' 💎 %cmd %islimit %isPremium',
   footer: ' ',
-  after: `💎 *Hosted by Love, Heroku server, nice day, cool* 
+  after: `💎 *Hosted by Frank Dury, Heroku server* 
 `,
 }
 let handler = async (m, { conn, usedPrefix: _p }) => {
